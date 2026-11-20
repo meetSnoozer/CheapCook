@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.mainHead {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem; /* Fixed: changed comma to space */
+    width: 100%;
+    box-sizing: border-box; /* Recommended so padding doesn't cause overflow */
+}
+
+.mainHead h1 {
+    color: whitesmoke;
+    margin: 0;
+}
+
+.mainHead ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 2rem;
+}
+
+.mainHead li {
+    list-style: none;
+}
+
+.mainHead a {
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mainHead li a {
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.mainHead li a:hover {
+    font-weight: 700;
+    
+}
+.mainHead li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;                     /* Thickness of the underline */
+    background-color: #00A9FF;       /* Color of the underline (or use white) */
+    
+    transform: scaleX(0);            /* Starts completely shrunk */
+    transform-origin: center;        /* Expands outward from the middle */
+    transition: transform 0.25s ease-out; /* Animation speed and smoothness */
+}
+
+/* Expands to full width on hover */
+.mainHead li a:hover::after {
+    transform: scaleX(1);
+}
+.mainHead a:active {
+    text-decoration: none;
+}
