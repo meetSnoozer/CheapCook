@@ -9,7 +9,7 @@ function Header(){
             <li> <Link to="/daily">Recipe of the Day</Link></li>
             <li> < Link to="/custom-recipe">Find a Recipe</Link></li>
             <li>< Link to="#">Create A Recipe</Link></li>
-            <li>< Link to="#">FAQ</Link></li>
+            <li>< Link to="/FAQ">FAQ</Link></li>
         </ul>
         </nav>
     </header>
