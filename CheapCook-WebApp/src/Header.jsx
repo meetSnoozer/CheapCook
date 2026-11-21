@@ -1,14 +1,15 @@
-import './Header.css'
+import { Link } from 'react-router-dom';
+import './Header.css';
 function Header(){
     return(
         <header className="mainHead">
-        <h1><a href="#">CheapCook</a></h1>
+        <h1> <Link to="/">CheapCook </Link></h1>
         <nav>
             <ul>
-            <li><a href="#">Recipe of the Day</a></li>
-            <li><a href="#">Find a Recipe</a></li>
-            <li><a href="#">Create A Recipe</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li> <Link to="/daily">Recipe of the Day</Link></li>
+            <li> < Link to="/custom-recipe">Find a Recipe</Link></li>
+            <li>< Link to="#">Create A Recipe</Link></li>
+            <li>< Link to="#">FAQ</Link></li>
         </ul>
         </nav>
     </header>

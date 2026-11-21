@@ -1,14 +1,21 @@
-
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
+import { Route, Routes } from 'react-router-dom';
 import Body from './Body.jsx';
-function App(){
-  return(
-    
+import Footer from './Footer.jsx';
+import Header from './Header.jsx';
+import CustomRecipe from './pages/customRecipe.jsx';
+import Recommendation from './pages/dailyRecommendedPage.jsx';
+
+function App() {
+  return (
     <>
-    <Header/>
-    <Body/>
-    <Footer/>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Body />} />
+        <Route path="/daily" element={<Recommendation />} />
+        <Route path="/custom-recipe" element={<CustomRecipe/>}></Route>
+       
+      </Routes>
+      <Footer />
     </>
   );
 }
