@@ -100,16 +100,7 @@ function Body(){
           color: var(--text-h);
         }
 
-        @media (prefers-color-scheme: dark) {
-          .my-scoped-root {
-            --text: #9ca3af;
-            --text-h: #f3f4f6;
-            --bg: #16171d;
-
-            --code-bg: #1f2028;
-            --accent: #c084fc;
-          }
-        }
+       
       `}</style>
     <div className='imgcard'>
         <img src={imgList[index]} key={index} className='foodImg'/>
