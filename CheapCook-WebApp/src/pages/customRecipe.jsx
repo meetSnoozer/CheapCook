@@ -117,12 +117,7 @@ export default function RecipeFinder() {
       // Filter ON: only show recipes that use at least one of the user's
       // ingredients (or every recipe of the type if none were entered).
       // Filter OFF: show every recipe of the chosen type.
-      .filter(
-        (r) =>
-          !filterByIngredients ||
-          userIngredients.length === 0 ||
-          r.matched.length > 0
-      )
+      .filter((r) => !filterByIngredients || r.matched.length > 0)
       .sort(
         (a, b) =>
           b.matched.length / (b.recipe.main_ingredients?.length || 1) -

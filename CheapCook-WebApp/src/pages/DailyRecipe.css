@@ -1,0 +1,220 @@
+/* Optional fonts. Without this import the fallbacks (Georgia / system sans) are used. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap");
+
+.dr-page {
+  --dr-paper: #f7f5fb;
+  --dr-card: #ffffff;
+  --dr-ink: #1e1633;
+  --dr-muted: #61587a;
+  --dr-ube: #5b3e96;
+  --dr-ube-tint: #ece6f7;
+  --dr-calamansi: #e8b923;
+  --dr-leaf: #2f6b4f;
+  --dr-line: #ddd6ea;
+
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  background: var(--dr-paper);
+  color: var(--dr-ink);
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.55;
+  box-sizing: border-box;
+}
+
+.dr-page *,
+.dr-page *::before,
+.dr-page *::after {
+  box-sizing: inherit;
+}
+
+.dr-header {
+  margin-bottom: 20px;
+}
+
+.dr-page-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.dr-date {
+  margin: 2px 0 0;
+  color: var(--dr-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Card ---------- */
+
+.dr-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  background: var(--dr-card);
+  border: 1px solid var(--dr-line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.dr-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+  background: var(--dr-ube-tint);
+}
+
+.dr-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 32px 36px;
+}
+
+.dr-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dr-tag {
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--dr-ube-tint);
+  color: var(--dr-ube);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.dr-tag-type {
+  background: var(--dr-calamansi);
+  color: var(--dr-ink);
+}
+
+.dr-name {
+  margin: 0;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.dr-desc {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--dr-muted);
+  font-size: 1.02rem;
+}
+
+.dr-sub {
+  margin: 4px 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dr-ingredients {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dr-ingredients li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.dr-ingredients li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dr-leaf);
+}
+
+.dr-meta {
+  display: grid;
+  gap: 10px;
+  margin: auto 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--dr-line);
+}
+
+.dr-meta div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+}
+
+.dr-meta dt {
+  color: var(--dr-muted);
+  font-weight: 500;
+}
+
+.dr-meta dd {
+  margin: 0;
+}
+
+/* ---------- States ---------- */
+
+.dr-status {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--dr-muted);
+}
+
+.dr-btn {
+  margin-top: 8px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--dr-ube);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dr-page-title {
+    color: black;
+    font-size: 50px;
+}
+.dr-btn:hover {
+  background: #4a3080;
+}
+
+.dr-btn:focus-visible {
+  outline: 3px solid var(--dr-calamansi);
+  outline-offset: 2px;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 760px) {
+  .dr-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dr-img {
+    min-height: 0;
+    height: 260px;
+  }
+
+  .dr-body {
+    padding: 24px 20px 28px;
+  }
+
+  .dr-ingredients {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dr-meta div {
+    grid-template-columns: 80px 1fr;
+  }
+}

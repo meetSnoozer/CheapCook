@@ -1,202 +1,356 @@
-.samp{
-    height: 50rem;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@media (max-width:1170px){
-  .label h1{
-  color: white !important;
-  text-align: center !important;
-  font-size: 50px !important;
-}
-}
-@media (max-width:1070px){
-  .label h1{
-  color: white !important;
-  text-align: center !important;
-  font-size: 40px !important;
-}
-}
-@media (max-width:820px){
-  .label h1{
-  color: white !important;
-  text-align: center !important;
-  font-size: 33px !important;
-}
-}
-@media (max-width:628px){
-  .label h1{
-  color: white !important;
-  text-align: center !important;
-  font-size: 30px !important;
-}
+/* Optional fonts, same as the daily recipe and FAQ pages. Delete this line to use the fallbacks. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap");
+
+/* Everything is scoped under .lp so nothing here can leak into other pages. */
+.lp {
+  --lp-bg: #ffffff;
+  --lp-paper: #f7f5fb;
+  --lp-ink: #1e1633;
+  --lp-muted: #4f4668;
+  --lp-ube: #5b3e96;
+  --lp-ube-tint: #ece6f7;
+  --lp-lime: #d2e800; /* your original button colour */
+  --lp-leaf: #2f6b4f;
+  --lp-line: #ddd6ea;
+  --lp-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --lp-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  width: 100%;
+  max-width: 1326px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+  background: var(--lp-bg);
+  color: var(--lp-muted);
+  font: 18px/1.6 var(--lp-sans);
+  text-align: left;
+  box-sizing: border-box;
 }
 
+.lp *,
+.lp *::before,
+.lp *::after {
+  box-sizing: inherit;
+}
 
-.foodImg {
-    width: 100%;
-    aspect-ratio: 2/1;
-    object-fit: cover;
-  animation: fadeIn 1.5s ease-in-out;
+/* ---------- Buttons ---------- */
+
+.lp .lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 28px;
+  border: 2px solid var(--lp-lime);
+  border-radius: 999px;
+  background: var(--lp-lime);
+  color: var(--lp-ink);
+  font: 600 1.05rem/1 var(--lp-sans);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.lp .lp-btn:hover {
+  background: #e2f533;
+  border-color: #e2f533;
+}
+
+.lp .lp-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.lp .lp-btn-lg {
+  min-height: 58px;
+  padding: 0 36px;
+  font-size: 1.2rem;
+}
+
+.lp .lp-btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+}
+
+.lp .lp-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+/* ---------- Hero ---------- */
+
+.lp-hero {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--lp-ube-tint);
+}
+
+.lp-hero-img {
   display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 420px;
+  object-fit: cover;
+  animation: lp-fade 1.5s ease-in-out;
 }
-.imgcard{
-    margin-top: 2rem;
-    position: relative;
-    width: 100%;
-}
-.cardOverlay {
+
+.lp-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 2rem;
-  gap: 1rem;
+  gap: 24px;
+  padding: clamp(24px, 5vw, 56px);
+  background: linear-gradient(
+    to top,
+    rgba(30, 22, 51, 0.88) 0%,
+    rgba(30, 22, 51, 0.45) 40%,
+    rgba(30, 22, 51, 0) 75%
+  );
 }
 
-.tryButton {
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid;
-  background-color: #D2E800;
-  font-family: sans-serif;
-  margin-bottom: 5rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+.lp .lp-hero-title {
+  max-width: 15ch;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--lp-serif);
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
-h1 {
-  color: whitesmoke;
-  /* remove position, bottom, left */
-}   
-.siteInfo{
-  margin-top: 150px;
+/* ---------- Sections ---------- */
+
+.lp-section {
+  margin-top: clamp(72px, 10vw, 120px);
 }
-.card p{
-  color: black;
+
+/* Your tab-shaped label, kept, now sized to its text */
+.lp .lp-label {
+  display: inline-block;
+  margin: 0 0 48px;
+  padding: 18px 44px;
+  border-radius: 0 35px 0 35px;
+  background: var(--lp-ink);
+  color: #ffffff;
+  font-family: var(--lp-serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
-.card {
-  width: 90%;
-  border-radius: 20px;
+
+/* ---------- What to expect ---------- */
+
+.lp-features {
   display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 8vw, 96px);
+}
+
+.lp-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 64px);
   align-items: center;
-  gap: 20px;
+}
+
+.lp-feature-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 24px;
+  background: var(--lp-ube-tint);
+}
+
+.lp-feature-flip .lp-feature-img {
+  order: 2;
+}
+
+.lp .lp-feature-title {
+  margin: 0 0 12px;
+  color: var(--lp-ink);
+  font-family: var(--lp-serif);
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.lp .lp-feature-text {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--lp-muted);
+}
+
+/* ---------- What we offer ---------- */
+
+.lp-offers {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.lp-offer {
+  position: relative;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--lp-line);
+  border-radius: 32px;
+  background: var(--lp-paper);
+  overflow: hidden;
+}
+
+/* A coloured bar along the top tells the three groups apart */
+.lp-offer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 8px;
+  background: var(--lp-accent);
+}
+
+.lp-offer-ube {
+  --lp-accent: var(--lp-ube);
+}
+
+.lp-offer-leaf {
+  --lp-accent: var(--lp-leaf);
+}
+
+.lp-offer-lime {
+  --lp-accent: var(--lp-lime);
+}
+
+.lp .lp-offer-title {
+  margin: 8px 0 28px;
+  color: var(--lp-ink);
+  font-family: var(--lp-serif);
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.lp-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.lp-item-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin-bottom: 16px;
+  border-radius: 18px;
+  background: var(--lp-ube-tint);
+}
+
+.lp .lp-item-title {
+  margin: 0 0 6px;
+  color: var(--lp-ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.lp .lp-item-text {
+  margin: 0;
+  color: var(--lp-muted);
+  font-size: 1rem;
+}
+
+/* ---------- Call to action ---------- */
+
+.lp-cta {
+  margin: clamp(72px, 10vw, 120px) 0;
+  padding: clamp(32px, 6vw, 72px);
+  border-radius: 36px;
+  background: var(--lp-ink);
+}
+
+.lp .lp-cta-title {
+  max-width: 18ch;
+  margin: 0 0 16px;
+  color: #ffffff;
+  font-family: var(--lp-serif);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lp .lp-cta-text {
+  max-width: 56ch;
+  margin: 0 0 32px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.lp-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes lp-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lp-reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.card.visible {
+.lp-reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
-.cardTxt{
-  display: flex;
-  flex-direction: column;
-  padding-left: 2.5%;
-  padding-right: 2.5%;
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-img {
+    animation: none;
+  }
+
+  .lp-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
-.card img{
-  width: 40%;
-  padding-top: 35px;
-  padding-bottom: 35px;
-  padding-left: 2.5%;
-  padding-right: 2.5%;
-  border-radius: 15px;
-}
-.cardContainer{
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 100px;
-  margin-bottom: 100px;
-}
-.label{
-  text-align: left;
-  background-color: black;
-  width: 40%;
-  height: 100px;
-  display: flex;
-  border-radius: 0 35px 0 35px;
-  justify-content: center !important;
-  align-items: center !important;
-}
-.label h1{
-  color: white !important;
-  text-align: center !important;
-}
-.r2{
-  background-color: #FAF6F0;
-}
-.r1{
-  background-color: #f8f6f2;
-}
-.miniCard{
-  width: 30%;
-  border: 1px solid;
-  box-shadow: 2px;
-  border-radius: 50px;
-}
-.offerCard{
-  display: flex;
-  flex-direction: column !important;
-  border-radius: 50px !important;
-}
-.miniCard img{
-  width: 90%;
-  aspect-ratio: 15/10;
-}
-.miniHandler{
-  margin-left: 2.5%;
-  display: flex;
-  flex-direction: row;
-  gap: 3%;
-  margin-bottom: 50px;
-}
-.tryCard{
-  width: 90%;
-  background-color: black;
-  border-radius: 50px;
-  min-height: 50px;
-  margin-bottom: 100px;
-  display: flex;
-  align-items: center;
-  gap: 5%;
-  margin-left: 5%;
-}
-.tryOption{
-  width: 100%;
-}
-.tryTxt{
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 35px;
-  
-}
-.tryTxt h1{
-  color: whitesmoke !important;
-  margin: 15%;
-}
-.tryButtons button{
-  margin: 5%;
-  padding: 2.5%;
-  border-radius: 50px;
-  font-family: sans-serif;
-  font-weight: bold;
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 800px) {
+  .lp-feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-feature-flip .lp-feature-img {
+    order: 0;
+  }
+
+  .lp-hero-img {
+    aspect-ratio: auto;
+    height: 440px;
+    min-height: 0;
+  }
+
+  .lp .lp-label {
+    padding: 14px 28px;
+  }
 }
