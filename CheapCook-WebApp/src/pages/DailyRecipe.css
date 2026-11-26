@@ -193,6 +193,37 @@
   outline: 3px solid var(--dr-calamansi);
   outline-offset: 2px;
 }
+.cookButton{
+  background: #e2f533;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  border-radius: 999px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  color: var(--dr-ink);
+  font-size: 1rem;
+}
+.cookButton:hover{
+  background: #edff4f;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  border: 2px solid wheat;
+  animation: floatUp 1s ease-in-out forwards;
+}
+.btnLnk{
+  width: fit-content;
+
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
 
 /* ---------- Mobile ---------- */
 

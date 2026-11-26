@@ -2,7 +2,7 @@ import './footer.css'
 function Footer(){
     return(
         <footer>
-            <p>&copy; CheapCook {new Date().getFullYear()}</p>
+            <p>&copy; MakeDoKitchen {new Date().getFullYear()}</p>
         </footer>
     );
 }

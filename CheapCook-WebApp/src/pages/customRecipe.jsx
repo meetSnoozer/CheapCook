@@ -1,25 +1,39 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState,useRef, useEffect } from "react";
+import appetizer from '../assets/appetizer.jpg';
+import bev from '../assets/bev.jpg';
+import bread from '../assets/bread.jpg';
+import breakfast from '../assets/breakfast.jpg';
+import condiment from '../assets/condiment.jpg';
+import desser from '../assets/desser.jpg';
+import kakanin from '../assets/kakanin.jpg';
+import main from '../assets/main.jpg';
+import noodle from '../assets/noodle.jpg';
+import rice from '../assets/rice.jpg';
+import side from '../assets/side.jpg';  
+import snack from '../assets/snack.jpg';
+import soup from '../assets/soup.jpg';
+import streetfood from '../assets/streetfood.jpg';
+
 import "./RecipeFinder.css";
 
 const API_URL = "https://filipino-food-api.ryodgie.workers.dev/v1/dishes";
 
 const MEAL_TYPES = [
-  { label: "Main Dish", value: "main_dish" },
-  { label: "Soup", value: "soup" },
-  { label: "Dessert", value: "dessert" },
-  { label: "Snack", value: "snack" },
-  { label: "Appetizer", value: "appetizer" },
-  { label: "Breakfast", value: "breakfast" },
-  { label: "Rice Dish", value: "rice_dish" },
-  { label: "Noodle Dish", value: "noodle_dish" },
-  { label: "Kakanin", value: "kakanin" },
-  { label: "Bread Pastry", value: "bread_pastry" },
-  { label: "Side Dish", value: "side_dish" },
-  { label: "Condiment", value: "condiment" },
-  { label: "Beverage", value: "beverage" },
-  { label: "Street Food", value: "street_food" },
+  { label: "Main Dish", value: "main_dish",img:main },
+  { label: "Soup", value: "soup",img:soup },
+  { label: "Dessert", value: "dessert",img:desser },
+  { label: "Snack", value: "snack",img:snack },
+  { label: "Appetizer", value: "appetizer",img:appetizer },
+  { label: "Breakfast", value: "breakfast",img:breakfast },
+  { label: "Rice Dish", value: "rice_dish",img:rice },
+  { label: "Noodle Dish", value: "noodle_dish",img:noodle },
+  { label: "Kakanin", value: "kakanin",img:kakanin },
+  { label: "Bread Pastry", value: "bread_pastry",img:bread },
+  { label: "Side Dish", value: "side_dish",img:side },
+  { label: "Condiment", value: "condiment",img:condiment },
+  { label: "Beverage", value: "beverage",img:bev },
+  { label: "Street Food", value: "street_food",img:streetfood},
 ];
-
 const UNITS = ["pcs", "g", "kg", "cup", "tbsp", "tsp", "ml", "L", "slices", "cloves"];
 
 const newRow = () => ({
@@ -44,9 +58,10 @@ const extractList = (data) => {
 };
 
 export default function RecipeFinder() {
+  
   const [rows, setRows] = useState([newRow()]);
   const [mealType, setMealType] = useState("");
-  const [filterByIngredients, setFilterByIngredients] = useState(true);
+  const [filterByIngredients, setFilterByIngredients] = useState(false);
   const [searched, setSearched] = useState(false);
 
   // Fetched recipes live in the component, so the cards below can see them.
@@ -71,6 +86,16 @@ export default function RecipeFinder() {
     setError(null);
   };
 
+  const recipesRef = useRef(null);
+  {/**
+    const scroll2Recipes = (type) =>{
+    setMealType(type);
+    recipesRef.current?.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+    
+    */}
+  
+ 
   // A normal async function (not a hook), so it can be called from an event handler.
   const fetchRecipes = async () => {
     setLoading(true);
@@ -130,6 +155,11 @@ export default function RecipeFinder() {
     setSearched(true);
     fetchRecipes();
   };
+   useEffect(()=>{
+    
+    recipesRef.current?.scrollIntoView({behavior:"smooth",block:"start"});
+    //console.log(mealType)
+  },[results])
 
   return (
     <div className="rf-page">
@@ -189,6 +219,8 @@ export default function RecipeFinder() {
         </button>
 
         <h2 className="rf-section">Type of meal</h2>
+
+        {/* ... 
         <select
           className="rf-input rf-meal"
           value={mealType}
@@ -202,6 +234,21 @@ export default function RecipeFinder() {
             </option>
           ))}
         </select>
+        */}
+        <div className="TypeSelection">
+          {MEAL_TYPES.map((mType)=>(
+            <button className={`mealTypeBtn ${mealType===mType.value ? "is-selected" : ""}`} onClick={()=>setMealType(mType.value)} key={mType.value}>
+              
+              
+            <div>
+              <h3 className="rf-card-title mTxt">{mType.label}</h3>
+              <p className="rf-desc mTxt1">recipe.description</p>
+              <img src={mType.img} />
+            </div>
+            </button>
+          ))}
+            
+        </div>
 
         <div className="rf-actions">
           <button type="submit" className="rf-btn rf-primary" disabled={loading}>
@@ -253,7 +300,7 @@ export default function RecipeFinder() {
             <h2 className="rf-section">
               {results.length} recipe{results.length > 1 ? "s" : ""} found
             </h2>
-            <div className="rf-grid">
+            <div className="rf-grid" ref={recipesRef}>
               {results.map(({ recipe, matched, missing }) => (
                 <article className="rf-card" key={recipe.id}>
                   <img

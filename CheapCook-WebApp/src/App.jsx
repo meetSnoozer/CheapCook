@@ -5,6 +5,7 @@ import Header from './Header.jsx';
 import RecipeFinder from './pages/customRecipe.jsx';
 import DailyRecipe from './pages/dailyRecommendedPage.jsx';
 import FAQ from './pages/FAQ.jsx';
+import Steps from './pages/steps.jsx';
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/daily" element={<DailyRecipe />} />
         <Route path="/custom-recipe" element={<RecipeFinder/>}></Route>
         <Route path='/FAQ' element={<FAQ/>}></Route>
+        <Route path='/steps' element={<Steps/>}></Route>
       </Routes>
       <Footer />
     </>

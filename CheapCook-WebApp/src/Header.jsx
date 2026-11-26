@@ -3,7 +3,7 @@ import './Header.css';
 function Header(){
     return(
         <header className="mainHead">
-        <h1> <Link to="/">CheapCook </Link></h1>
+        <h1> <Link to="/">MakeDo Kitchen </Link></h1>
         <nav>
             <ul>
             <li> <Link to="/daily">Recipe of the Day</Link></li>

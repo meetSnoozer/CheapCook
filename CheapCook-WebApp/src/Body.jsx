@@ -114,9 +114,7 @@ const OFFERS = [
   },
 ];
 
-// onCustom: opens the custom recipe finder. onDaily: opens the daily recommendation.
-// Wire them to your router (e.g. () => navigate('/finder')) or swap the <button>s for <Link>s.
-function Body({ onCustom, onDaily }) {
+function Body() {
   const [index, setIndex] = useState(0);
   const rootRef = useRef(null);
 
@@ -168,7 +166,7 @@ function Body({ onCustom, onDaily }) {
         <div className="lp-hero-overlay">
           <h1 className="lp-hero-title">Eat and save money at the same time</h1>
           <Link to="/custom-recipe"> 
-          <button type="button" className="lp-btn lp-btn-lg" onClick={onCustom}>
+          <button type="button" className="lp-btn lp-btn-lg">
             
               Try it now
             
@@ -237,12 +235,12 @@ function Body({ onCustom, onDaily }) {
         </p>
         <div className="lp-cta-actions">
           <Link to="/daily">
-            <button type="button" className="lp-btn" onClick={onDaily}>
+            <button type="button" className="lp-btn">
               Daily recommendation
             </button>
           </Link>
           <Link to="/custom-recipe">
-            <button type="button" className="lp-btn lp-btn-ghost" onClick={onCustom}>
+            <button type="button" className="lp-btn lp-btn-ghost">
               Custom recipe
             </button>
           </Link>

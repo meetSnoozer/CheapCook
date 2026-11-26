@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import "./DailyRecipe.css";
 
 const API_URL = "https://filipino-food-api.ryodgie.workers.dev/v1/dishes";
@@ -33,7 +34,15 @@ export default function DailyRecipe() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [attempt, setAttempt] = useState(0); // bump to retry
+  const navigator = useNavigate();
+  const rdr = () =>{
+    navigator("/steps",
+      {
+        state: {recipe:recipe.name,img:recipe.image_url}
+      }
+    );
 
+  }
   useEffect(() => {
     const controller = new AbortController();
 
@@ -135,6 +144,9 @@ export default function DailyRecipe() {
                   </div>
                 )}
               </dl>
+              <button className="cookButton" onClick={rdr}>Use Recipe</button>
+              
+              
             </div>
           </article>
         )}
