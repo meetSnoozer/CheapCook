@@ -38,14 +38,35 @@ export default function DailyRecipe() {
   const rdr = () =>{
     navigator("/steps",
       {
-        state: {recipe:recipe.name,img:recipe.image_url}
+        state: {recipe:recipe}
       }
     );
 
   }
   useEffect(() => {
     const controller = new AbortController();
-
+    const datedKey = localDayNumber().toString();
+    console.log(datedKey);
+    try{
+      const cached = sessionStorage.getItem(datedKey);
+      if(cached) 
+      {
+        const parsed = JSON.parse(cached);
+        if(parsed){
+        setRecipe(JSON.parse(cached));
+        setLoading(false)
+        setError(null)
+        console.log(cached)
+        //console.log(cached.id)
+        return;
+        }
+        
+      }
+        
+    }
+    catch{
+      console.log("nothing Cached for the meantime")
+    }
     (async () => {
       setLoading(true);
       setError(null);
@@ -53,12 +74,24 @@ export default function DailyRecipe() {
         const response = await fetch(API_URL, { signal: controller.signal });
         if (!response.ok) throw new Error(`Request failed (${response.status})`);
         const data = await response.json();
-        setRecipe(pickDaily(extractList(data)));
+        const pickedRecipe = pickDaily(extractList(data));
+        setRecipe(pickedRecipe);
+        //setRecipe(pickDaily(extractList(data)));
+        if(pickedRecipe){
+          try{
+          sessionStorage.setItem(datedKey,JSON.stringify(pickedRecipe))
+        }
+        catch(err){
+          console.log(err)
+        }
+        }
+        
       } catch (err) {
         if (err.name === "AbortError") return;
         setError(err.message || "Something went wrong");
       } finally {
         if (!controller.signal.aborted) setLoading(false);
+        
       }
     })();
 

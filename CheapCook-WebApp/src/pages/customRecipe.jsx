@@ -13,7 +13,7 @@ import side from '../assets/side.jpg';
 import snack from '../assets/snack.jpg';
 import soup from '../assets/soup.jpg';
 import streetfood from '../assets/streetfood.jpg';
-
+import { useNavigate } from "react-router-dom";
 import "./RecipeFinder.css";
 
 const API_URL = "https://filipino-food-api.ryodgie.workers.dev/v1/dishes";
@@ -85,7 +85,14 @@ export default function RecipeFinder() {
     setRecipes([]);
     setError(null);
   };
-
+  const nav = useNavigate();
+  const startCook=(recipe)=>{
+    console.log(recipe?.name);
+    //console.log(recipe);
+    nav("/steps",{
+      state:{recipe:recipe}
+    });
+  }
   const recipesRef = useRef(null);
   {/**
     const scroll2Recipes = (type) =>{
@@ -300,9 +307,9 @@ export default function RecipeFinder() {
             <h2 className="rf-section">
               {results.length} recipe{results.length > 1 ? "s" : ""} found
             </h2>
-            <div className="rf-grid" ref={recipesRef}>
+            <div className="rf-grid" ref={recipesRef} >
               {results.map(({ recipe, matched, missing }) => (
-                <article className="rf-card" key={recipe.id}>
+                <article className="rf-card" key={recipe.id} onClick={()=>startCook(recipe)}>
                   <img
                     className="rf-img"
                     src={recipe.image_url}
